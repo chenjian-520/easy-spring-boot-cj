@@ -1,0 +1,83 @@
+spring:
+  data:
+    mongodb:
+      host: ${mongodb.host}
+      port: ${mongodb.port}
+      username: ${mongodb.username}
+      password: ${mongodb.password}
+      database: ${mongodb.database}
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${mysql.host}:${mysql.port}/${mysql.database}?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true&useTimezone=true&serverTimezone=GMT%2B8
+    username: ${mysql.username}
+    password: ${mysql.password}
+    druid:
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 from DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: false
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,wall,slf4j
+      connectionProperties: true
+      stat:
+        mergeSql: true
+        slowSqlMillis: 5000
+
+  elasticsearch:
+    host: ${elasticsearch.host}
+    port: ${elasticsearch.port}
+
+  redis:
+    host: ${redis.host}
+    port: ${redis.port}
+    password: ${redis.password}
+    timeout: 10000
+    database: 1
+    jedis:
+      pool:
+        max-active: 10
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+
+mybatis:
+  type-aliases-package: com.tlrobot.entity.*
+  #下划线和驼峰转换
+  configuration:
+    map-underscore-to-camel-case: true
+    jdbc-type-for-null: null
+    lazy-loading-enabled: true
+    aggressive-lazy-loading: true
+    cache-enabled: true
+    call-setters-on-nulls: true
+  mapper-locations: classpath:mybatis/*.xml
+
+fdfs:
+  so-timeout: 50000
+  connect-timeout: 50000
+  domain: ${fdfs.domain}
+  base:
+    path: ${fdfs.base.path}
+  thumb-image:             #缩略图生成参数
+    width: 200
+    height: 200
+  tracker-list:
+    - ${fdfs.tracker-list1}
+
+logging:
+  file:
+    path: /log/data
+  level:
+    org:
+      springframework:
+        jdbc:
+          core:
+            JdbcTemplate: debug
+            StatementCreatorUtils: trace
