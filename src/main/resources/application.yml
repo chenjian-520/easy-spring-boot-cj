@@ -9,6 +9,10 @@ spring:
     password: root
   main:
     allow-bean-definition-overriding: true
+    #延迟初始化   或 配合 @Lazy(value = true)  注解在bean上
+  #    lazy-initialization: true
+  banner:
+    location: banner.txt
 
 mybatis:
   type-aliases-package: com.liuqi.cj.easyspringboot.demo.entity.*
