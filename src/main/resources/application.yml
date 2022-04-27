@@ -3,7 +3,7 @@ server:
 #数据源配置
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/f_user?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/f_user?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
@@ -40,3 +40,7 @@ logging:
             JdbcTemplate: debug
             StatementCreatorUtils: trace
 
+
+#文件过滤器启用
+filter:
+  loginFilter: true

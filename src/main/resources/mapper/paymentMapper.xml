@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liuqi.cj.easyspringboot.demo.dao.TestDao">
+    <!--namespace根据自己需要创建的的mapper的路径和名称填写-->
+    <insert id="create" parameterType="com.liuqi.cj.easyspringboot.demo.entity.Test" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into test (name,val)
+        values (#{name},#{name});
+    </insert>
+
+    <select id="getTestById" parameterType="Integer" resultType="com.liuqi.cj.easyspringboot.demo.entity.Test">
+        select *
+        from test
+        where id = #{id};
+    </select>
+
+</mapper>
